@@ -3,11 +3,12 @@
 version = 3
 
 [[package]]
-name = "ChatGPT"
+name = "ChatGpt"
 version = "0.1.0"
 dependencies = [
  "futures",
  "reqwest",
+ "serde_json",
  "tokio",
 ]
 
