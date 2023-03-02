@@ -1,5 +1,5 @@
 [package]
-name = "ChatGpt"
+name = "chat_gpt"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,3 +10,4 @@ reqwest = { version = "0.11", features = ["json"] } # reqwest with JSON parsing 
 futures = "0.3" # for our async / await blocks
 tokio = { version = "1.12.0", features = ["full"] } # for our async runtime
 serde_json = "1.0"
+json = "0.12.4"

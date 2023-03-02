@@ -1,6 +1,8 @@
 use std::env;
 use reqwest;
 use serde_json::{Value, Map, Number};
+use json;
+
 
 #[tokio::main]
 async fn main() {
@@ -13,8 +15,9 @@ async fn main() {
     let mut data = Map::new();
 
     data.insert("model".to_string(),    Value::String("text-davinci-003".to_string()));
-    data.insert("prompt".to_string(), Value::String("can you generate cv for a fresh engineering graduate?".to_string()));
-    data.insert("max_tokens".to_string(), Value::Number(Number::from(1000)));
+    data.insert("prompt".to_string(), 
+        Value::String("write a love poem".to_string()));
+    data.insert("max_tokens".to_string(), Value::Number(Number::from(4000)));
 
     let response = client
         .post("https://api.openai.com/v1/completions")
@@ -27,6 +30,10 @@ async fn main() {
         // the rest is the same!
         .unwrap()
         .text()
-        .await;
-    println!("{:?}", response);
+        .await
+        .unwrap();
+
+    let parsed = json::parse(&response).unwrap();
+    
+    println!("{}", parsed["choices"][0]);
 }
