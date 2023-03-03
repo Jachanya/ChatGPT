@@ -12,11 +12,11 @@ async fn main() {
     
 
     let client = reqwest::Client::new();
-    let mut data = Map::new();
+    let mut data = Map::new(); 
 
     data.insert("model".to_string(),    Value::String("text-davinci-003".to_string()));
     data.insert("prompt".to_string(), 
-        Value::String("write a love poem".to_string()));
+        Value::String("can you communicate with humans?".to_string()));
     data.insert("max_tokens".to_string(), Value::Number(Number::from(4000)));
 
     let response = client
@@ -28,10 +28,10 @@ async fn main() {
         .send()
         .await
         // the rest is the same!
-        .unwrap()
+        .expect("ERRRRRRRRRRRRRRRRRRRRR")
         .text()
         .await
-        .unwrap();
+        .expect("Errrrrrrrrrrrrrrrrrrrr");
 
     let parsed = json::parse(&response).unwrap();
     
